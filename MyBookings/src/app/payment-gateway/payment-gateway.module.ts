@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { PaymentGatewayComponent } from './payment-gateway/payment-gateway.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    PaymentGatewayComponent
+  ],
   imports: [
     CommonModule
   ]
