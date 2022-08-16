@@ -1,1 +1,45 @@
-<p>header works!</p>
+
+
+<header class="bs4header bg-primary">
+    <!-- style="position: fixed;
+    width: -webkit-fill-available"> -->
+        <div class="main-header">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <a class="navbar-brand" href="#"><h4><i>MyBookings.ie</i></h4></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs4navbar" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse"  id="bs4navbar">
+                    <ul class="navbar-nav ml-auto"  style="font-size: 15px;">
+                        <li class="nav-item">
+                            <a class="nav-link" (click)= "navigateHome()">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLinkActive="active" (click)= "router.navigate(['/pages/appointments/search'])">Book Appointment</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLinkActive="active" (click)= "router.navigate(['/pages/appointments/history'])">My Appointments</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLinkActive="active" (click)= "router.navigate(['/pages/appointments/calendar'])" >Calendar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLinkActive="active" (click)= "router.navigate(['/pages/appointments/view-appointments'])" >View Appointments</a>
+                        </li>
+             
+                        <li class="nav-item">
+                            <a class="nav-link" routerLinkActive="active"(click)= "logout()">Logout</a>
+                        </li>
+                        <!-- <li class="dropdown">
+                            <button class="btn btn-warning dropdown-toggle ml-lg-5"(click)= "router.navigate(['/pages/appointments/view-appointments'])" id="navbarDropdownMenuLink" routerLinkActive="active" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</button>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" routerLinkActive="active">
+                                <a class="dropdown-item"(click)= "router.navigate(['/pages/appointments/view-appointments'])">User Name</a>
+                                <a class="dropdown-item"(click)= "router.navigate(['/pages/appointments/view-appointments'])">Setting</a>
+                                <a class="dropdown-item"(click)= "router.navigate(['/pages/appointments/view-appointments'])">Logout</a> 
+                            </div>
+                        </li> -->
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header> 

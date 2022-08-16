@@ -10,6 +10,7 @@ export class LoginRegisterComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    alert('compo')
   }
 
 }

@@ -9,7 +9,7 @@ import { LoginRegisterComponent } from './login-register/login-register.componen
     LoginRegisterComponent
   ],
   imports: [
-    CommonModule
+    CommonModule, LoginRegisterModule
   ]
 })
 export class LoginRegisterModule { }

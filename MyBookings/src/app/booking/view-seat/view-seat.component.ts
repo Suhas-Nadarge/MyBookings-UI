@@ -10,6 +10,7 @@ export class ViewSeatComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    alert('clled')
   }
 
 }
