@@ -1,4 +1,6 @@
+import { keyframes } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SocketService } from 'src/app/services/socket.service';
 import { seatLayout } from 'src/constant';
 
@@ -9,7 +11,7 @@ import { seatLayout } from 'src/constant';
 })
 export class ViewSeatsComponent implements OnInit {
   movies: any[] = [];
-
+  disabledSeats: any[] = []
   public seatLayout = seatLayout;
   public seat_map:any = [];
   public seatLayoutConfig = {
@@ -27,21 +29,24 @@ export class ViewSeatsComponent implements OnInit {
   
 
   title = '';
+  uniqueId: any;
 
   constructor(
-		private socketService: SocketService 
+		private socketService: SocketService,public router:Router 
 	) { 
-	
+	 
   }
 
   ngOnInit(): void {
-    
+    this.uniqueId = Math.random()
+    const op = this.socketService.fetchSeats()
+
 
     this.generateSeats(this.seatLayout);
   }
   check(evt: any){
 console.log('---',evt.target.value)
-this.socketService.setupSocketConnection(evt.target.value);
+this.socketService.setupSocketConnection(evt.target.value,this.uniqueId);
     this.socketService.fetchSeats();
   }
 
@@ -115,7 +120,16 @@ this.socketService.setupSocketConnection(evt.target.value);
 
   public selectSeat( seatObject : any )
   {
-    console.log( "Seat to block: " , seatObject );
+    this.socketService.setupSocketConnection(seatObject,this.uniqueId)
+    const op = this.socketService.fetchSeats()
+    console.log('@@@'+op);
+// There are the seats whhich are hold for other user who's selected 
+    this.disabledSeats= op
+    // this.disabledSeats.push(op)
+
+    console.log('---'+this.disabledSeats);
+    // key, seatLabel
+
     if(seatObject.status == "available")
     {
       seatObject.status = "booked";
@@ -126,25 +140,28 @@ this.socketService.setupSocketConnection(evt.target.value);
     else if( seatObject.status = "booked" )
     {
       seatObject.status = "available";
-      var seatIndex = this.cart.selectedSeats.indexOf(seatObject.seatLabel);
-      if( seatIndex > -1)
+      var seat_index = this.cart.selectedSeats.indexOf(seatObject.seatLabel);
+      if( seat_index > -1)
       {
-        this.cart.selectedSeats.splice(seatIndex , 1);
-        this.cart.seatsToSave.splice(seatIndex , 1);
+        this.cart.selectedSeats.splice(seat_index , 1);
+        this.cart.seatsToSave.splice(seat_index , 1);
         this.cart.totalPrice -= seatObject.price;
       }
       
     }
   }
-  processBooking(){}
+  proceedBooking(){
+    this.router.navigate(['/payment-gateway'])
+  }
+  
 
   public blockSeats(seatsToBlock : string)
   {
     if(seatsToBlock != "")
     {
-      var seatsToBlockArr = seatsToBlock.split(',');
-      for (let index = 0; index < seatsToBlockArr.length; index++) {
-        var seat =  seatsToBlockArr[index]+"";
+      var seatToBook = seatsToBlock.split(',');
+      for (let index = 0; index < seatToBook.length; index++) {
+        var seat =  seatToBook[index]+"";
         var seatSplitArr = seat.split("_");
         console.log("Split seat: " , seatSplitArr);
         for (let index2 = 0; index2 < this.seat_map.length; index2++) {

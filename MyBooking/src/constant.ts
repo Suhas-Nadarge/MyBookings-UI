@@ -1,6 +1,6 @@
 export const seatLayout = [
     {
-      "ticket_price": 300,
+      "ticket_price": 12,
       "seat_obj": [
         {
           "seat_row_name": "G",
@@ -37,7 +37,7 @@ export const seatLayout = [
       ]
     },
     {
-      "ticket_price": 500,
+      "ticket_price":16,
       "seat_obj": [
         {
           "seat_row_name": "G",

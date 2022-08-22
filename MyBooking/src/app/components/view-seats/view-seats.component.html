@@ -22,9 +22,10 @@
             [ngClass]="{ 'seat-item' : true , 'seat-available' : seatobj.status == 'available' ,'seat-booked' : seatobj.status == 'booked' ,'seat-unavailable' : seatobj.status == 'unavailable' }" 
              (click)="selectSeat(seatobj)" *ngIf="(seatobj.status == 'available' || seatobj.status == 'booked' )&& seatobj.seatLabel != ''">{{seatobj.seatNo}}</div>
              
+            
             <div tooltip="Seat not available" placement="top"
             [ngClass]="{ 'seat-item' : true , 'seat-unavailable' : true }" 
-            *ngIf="seatobj.status == 'unavailable' && seatobj.seatLabel != ''">{{seatobj.seatNo}}</div>
+            *ngIf="(seatobj.status == 'unavailable' && seatobj.seatLabel != '') && disabledSeats.includes(seatobj.seatLabel) ">{{seatobj.seatNo}}</div>
         </div>
     </div>
 </div>
@@ -34,14 +35,14 @@
         <div class="" >
                 <div>
                     <h5>Total Selected : {{ cart.selectedSeats.length }}</h5>
-                    <h5>Total Amount :&nbsp;&nbsp; {{cart.totalPrice}} Rs</h5>
+                    <h5>Total Amount :&nbsp;&nbsp; {{cart.totalPrice}} Euro</h5>
                 </div>
         </div>
         <div class=" selected-seats">
             <h5 class=" no-padding">Selected Seats : </h5>
             <span *ngFor="let seatLabel of cart.selectedSeats" class="badge badge-primary">{{seatLabel}}</span>
         </div>
-        <button [disabled]="cart.selectedSeats.length == 0" type="button"  (click)="processBooking()" class="btn btn-primary" >Book Now</button>
+        <button [disabled]="cart.selectedSeats.length == 0" type="button"  (click)="proceedBooking()" class="btn btn-primary" >Book Now</button>
     </div>
     
     </div>
