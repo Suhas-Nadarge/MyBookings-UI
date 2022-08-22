@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { io } from 'socket.io-client';
 import { environment } from 'src/environments/environment';
 
@@ -9,21 +10,29 @@ import { environment } from 'src/environments/environment';
 export class SocketService {
   public psocket:any;
   public data : any;
+  public sub = new BehaviorSubject<any>(null)
   constructor(private socket: Socket) {
      }
+
   fetchSeats() {
 		// this.socket.emit('my broadcast');
     this.socket.on('my broadcast', (data: any) => {
-      console.log('Emitted-------',data);
+      console.log('Emitted-**------',data);
       this.data = data
+    this.setData(this.data)
     });
     return this.data;
 	} 
 
-//   key: "B_23"
-// price: 12
-// seatLabel: "B 21"
-// seatNo: "21"
+  getData(): Observable<any>{
+    return this.sub.asObservable();
+  }
+
+  setData(data: any){
+    this.sub.next(data)
+  }
+
+
   
   setupSocketConnection(seatObj: any, id:string) {
     this.psocket = io(environment.socketUrl, {transports: ['websocket']});

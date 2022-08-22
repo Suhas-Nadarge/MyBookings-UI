@@ -1,6 +1,7 @@
 import { keyframes } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { SocketService } from 'src/app/services/socket.service';
 import { seatLayout } from 'src/constant';
 
@@ -11,7 +12,7 @@ import { seatLayout } from 'src/constant';
 })
 export class ViewSeatsComponent implements OnInit {
   movies: any[] = [];
-  disabledSeats: any[] = []
+  disabledSeats:any = []
   public seatLayout = seatLayout;
   public seat_map:any = [];
   public seatLayoutConfig = {
@@ -34,19 +35,22 @@ export class ViewSeatsComponent implements OnInit {
   constructor(
 		private socketService: SocketService,public router:Router 
 	) { 
-	 
+
   }
 
   ngOnInit(): void {
+  
     this.uniqueId = Math.random()
-    const op = this.socketService.fetchSeats()
-
-
+    this.socketService.getData().subscribe(data=>{
+      console.log('Updated-'+JSON.stringify(data))
+      this.updateDisabled(data)
+    })
+    // const op = this.socketService.fetchSeats()
+    
     this.generateSeats(this.seatLayout);
   }
   check(evt: any){
 console.log('---',evt.target.value)
-this.socketService.setupSocketConnection(evt.target.value,this.uniqueId);
     this.socketService.fetchSeats();
   }
 
@@ -114,6 +118,8 @@ this.socketService.setupSocketConnection(evt.target.value,this.uniqueId);
         }
 
       }
+      console.log('/////'+JSON.stringify(this.seat_map))
+      
   }
 
   
@@ -121,15 +127,8 @@ this.socketService.setupSocketConnection(evt.target.value,this.uniqueId);
   public selectSeat( seatObject : any )
   {
     this.socketService.setupSocketConnection(seatObject,this.uniqueId)
-    const op = this.socketService.fetchSeats()
-    console.log('@@@'+op);
-// There are the seats whhich are hold for other user who's selected 
-    this.disabledSeats= op
-    // this.disabledSeats.push(op)
-
-    console.log('---'+this.disabledSeats);
-    // key, seatLabel
-
+    const data = this.socketService.fetchSeats();
+  //  this.updateDisabled(data)
     if(seatObject.status == "available")
     {
       seatObject.status = "booked";
@@ -148,7 +147,34 @@ this.socketService.setupSocketConnection(evt.target.value,this.uniqueId);
         this.cart.totalPrice -= seatObject.price;
       }
       
+    } if(this.disabledSeats.includes(seatObject.seatLabel)){
+
     }
+  }
+  updateDisabled(data: any) {
+    let bookedSeats: any[] = []
+    data ? bookedSeats = (data) : bookedSeats = []
+    console.log('@@@'+bookedSeats);
+    this.disabledSeats = []
+// There are the seats which are hold for other user who's selected 
+  if(bookedSeats.length){
+  bookedSeats = bookedSeats.filter((ele: any)=> ele['id']!= this.uniqueId)
+
+    bookedSeats.forEach((obj: { seatList: any; }) => {
+      this.disabledSeats = this.disabledSeats.concat(obj.seatList)
+    });
+    this.disabledSeats = [...new Set(this.disabledSeats)]
+  }
+    console.log('---'+this.disabledSeats);
+    // key, seatLabel
+    this.seat_map.forEach((mainObj:any) => {
+      for(let i=0;i<this.disabledSeats.length;i++){
+      if(mainObj['seatRowLabel']==this.disabledSeats[i][0]){
+        mainObj['seats'].map((element: any)=>Number(element['seatNo'])== Number((this.disabledSeats[i].slice(-2)).replace(/\s/g, "")) ? element['status'] = 'unavailable': element['status']= element['status'])
+      }
+    }
+    });
+
   }
   proceedBooking(){
     this.router.navigate(['/payment-gateway'])
