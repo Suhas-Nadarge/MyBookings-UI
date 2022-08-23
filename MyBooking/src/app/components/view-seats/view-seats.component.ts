@@ -171,6 +171,14 @@ console.log('---',evt.target.value)
       for(let i=0;i<this.disabledSeats.length;i++){
       if(mainObj['seatRowLabel']==this.disabledSeats[i][0]){
         mainObj['seats'].map((element: any)=>Number(element['seatNo'])== Number((this.disabledSeats[i].slice(-2)).replace(/\s/g, "")) ? element['status'] = 'unavailable': element['status']= element['status'])
+        // mainObj['seats'].forEach((obj:any) => {
+        //   const temp = (this.disabledSeats[i].slice(-2)).replace(/\s/g, "")
+        //   console.log('Comparee '+Number(obj['seatNo']),'--->'+Number(temp))
+        //   if(Number(obj['seatNo'])== Number(temp) ){
+        //     obj['status'] = 'unavailable';
+          
+        //   }
+        // }); 
       }
     }
     });
