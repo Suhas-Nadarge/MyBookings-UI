@@ -1,3 +1,3 @@
-export * from "./services/pluto.service";
+export * from "./services/pluto-payment.service";
 
-export * from "./pluto-angular.module";
+export * from "./pluto-payment.module";

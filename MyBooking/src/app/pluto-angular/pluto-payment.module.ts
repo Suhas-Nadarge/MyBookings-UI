@@ -1,6 +1,6 @@
 import { ModuleWithProviders, NgModule } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
-import { PLUTO_ID } from "./provider/client-id.provider";
+import { PLUTP_TOKEN_ID } from "./provider/client-token.provider";
 
 
 @NgModule({
@@ -8,13 +8,13 @@ import { PLUTO_ID } from "./provider/client-id.provider";
 })
 
 //<------------This module is Refered from this open source api  https://api.pluto.ricardosanchez.dev/api/payments/create-payment-intent------------->
-export class PlutoModule {
-  static forRoot(clientId?: string): ModuleWithProviders<PlutoModule> {
+export class PlutoPaymentModule {
+  static forRoot(clientId?: string): ModuleWithProviders<PlutoPaymentModule> {
     return {
-      ngModule: PlutoModule,
+      ngModule: PlutoPaymentModule,
       providers: [
         {
-          provide: PLUTO_ID,
+          provide: PLUTP_TOKEN_ID,
           useValue: clientId
         }
       ]

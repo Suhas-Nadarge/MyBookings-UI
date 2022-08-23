@@ -18,7 +18,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { NgxStripeModule } from "ngx-stripe";
 
 import { MaterialModule } from "./material.module";
-import { PlutoModule } from './pluto-angular/pluto-angular.module';
+import { PlutoPaymentModule } from './pluto-angular/pluto-payment.module';
 import { DialogComponent } from './dialog/dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -49,11 +49,11 @@ const config: SocketIoConfig = {
     TooltipModule.forRoot(),
 		SocketIoModule.forRoot(config), 
     MaterialModule,
-    FlexLayoutModule,PlutoModule,
+    FlexLayoutModule,PlutoPaymentModule,
     NgxStripeModule.forRoot(
       "pk_test_51Ii5RpH2XTJohkGafOSn3aoFFDjfCE4G9jmW48Byd8OS0u2707YHusT5PojHOwWAys9HbvNylw7qDk0KkMZomdG600TJYNYj20"
     ),
-    PlutoModule.forRoot("449f8516-791a-49ab-a09d-50f79a0678b6")
+    PlutoPaymentModule.forRoot("449f8516-791a-49ab-a09d-50f79a0678b6")
   ],
   providers: [SocketService],
   entryComponents: [DialogComponent],
