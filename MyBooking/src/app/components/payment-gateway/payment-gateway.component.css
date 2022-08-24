@@ -1,4 +1,4 @@
-form.checkout {
+/* form.checkout {
     max-width: 500px;
     margin: 2rem auto;
     text-align: center;
@@ -23,9 +23,22 @@ form.checkout {
   
   form.checkout button:active {
     background: rgb(165, 76, 43);
-  }
+  } */
+@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
   
-  p {
-    font-family: Lato;
-  }
-  
+body {
+  background-color: lightgray;
+}
+
+.mat-card {
+  padding: 0px !important;
+}
+
+.mat-card-header-text {
+  margin: 0px !important;
+}
+
+.mat-card-content,
+.mat-card-actions {
+  padding: 16px !important;
+}

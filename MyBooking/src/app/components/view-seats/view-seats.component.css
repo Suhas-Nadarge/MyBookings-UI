@@ -1,0 +1,23 @@
+@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+
+.box {
+    float: left;
+    height: 20px;
+    width: 20px;
+    margin-bottom: 15px;
+    border: 1px solid black;
+    clear: both;
+  }
+  
+  .red {
+    background-color: #fa3e3e;
+  }
+  
+  .green {
+    background-color: green;
+  }
+  
+  .grey {
+    background-color: grey;
+  }

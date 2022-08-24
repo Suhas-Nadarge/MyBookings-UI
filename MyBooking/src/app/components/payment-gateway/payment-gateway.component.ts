@@ -2,8 +2,7 @@ import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@an
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { StripeService, StripeCardComponent } from "ngx-stripe";
-
-import { switchMap } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { DialogComponent } from 'src/app/dialog/dialog.component';
 import { PlutoPaymentService } from 'src/app/pluto-angular/services/pluto-payment.service';
 

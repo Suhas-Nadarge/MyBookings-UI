@@ -1,6 +1,7 @@
 import { keyframes } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrManager } from 'ng6-toastr-notifications';
 import { Subscription } from 'rxjs';
 import { SocketService } from 'src/app/services/socket.service';
 import { seatLayout } from 'src/constant';
@@ -33,9 +34,9 @@ export class ViewSeatsComponent implements OnInit {
   uniqueId: any;
 
   constructor(
-		private socketService: SocketService,public router:Router 
+		private socketService: SocketService,public router:Router,public toastr: ToastrManager 
 	) { 
-
+    this.toastr.warningToastr('Please select the future date', 'Warning')
   }
 
   ngOnInit(): void {

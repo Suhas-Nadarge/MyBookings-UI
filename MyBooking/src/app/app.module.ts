@@ -21,6 +21,10 @@ import { MaterialModule } from "./material.module";
 import { PlutoPaymentModule } from './pluto-angular/pluto-payment.module';
 import { DialogComponent } from './dialog/dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxIdleTimeoutModule } from 'ngx-idle-timeout';
+import { ToastrModule } from 'ng6-toastr-notifications';
+import { NgxSpinnerModule } from 'ngx-spinner';
+
 
 const config: SocketIoConfig = {
 	url: environment.socketUrl, // socket server url;
@@ -38,17 +42,17 @@ const config: SocketIoConfig = {
     ViewSeatsComponent,
     PaymentGatewayComponent,
     DialogComponent
-  
   ],
   imports: [
     BrowserModule,
     FormsModule,ReactiveFormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
-    TooltipModule.forRoot(),
+    BrowserAnimationsModule,NgxSpinnerModule,
+    TooltipModule.forRoot(),ToastrModule.forRoot(),
 		SocketIoModule.forRoot(config), 
     MaterialModule,
+    NgxIdleTimeoutModule,
     FlexLayoutModule,PlutoPaymentModule,
     NgxStripeModule.forRoot(
       "pk_test_51Ii5RpH2XTJohkGafOSn3aoFFDjfCE4G9jmW48Byd8OS0u2707YHusT5PojHOwWAys9HbvNylw7qDk0KkMZomdG600TJYNYj20"
