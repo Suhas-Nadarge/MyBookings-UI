@@ -1,1 +1,164 @@
-<p>signup works!</p>
+
+<!-- <app-header></app-header> -->
+<!-- <div class="login-wrapper">
+    <div class="login-wrapper-inner">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12 col-lg-10">
+                    <div class="wrap d-md-flex">
+                        <div class="img" style="background-image:url('/assets/img/login-bg.jpg')">
+                        </div>
+                        <div class="login-wrap p-4 p-md-5">
+                            <div class="d-flex">
+                                <div class="w-100">
+                                    <h3 class="mb-4">Sign In</h3>
+                                </div>
+                            </div>
+                            <form action="#" class="signin-form">
+                                <div class="form-group mb-3">
+                                    <label class="label" for="name">Username</label>
+                                    <input type="text" class="form-control" placeholder="Username" required="">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="label" for="password">Password</label>
+                                    <input type="password" class="form-control" placeholder="Password" required="">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary rounded btn-block">Sign In</button>
+                                </div>
+                                <div class="form-group d-md-flex">
+                                    <div class="w-50 text-left">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                            <label class="custom-control-label" for="customCheck1">Remember Me</label>
+                                        </div>
+                                    </div>
+                                    <div class="w-50 text-md-right">
+                                        <a href="#">Forgot Password</a>
+                                    </div>
+                                </div>
+                            </form>
+                            <p class="text-center">Not a member? <a data-toggle="tab" href="#signup">Sign Up</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<!-- <div class="sidenav">
+    <div class="login-main-text">
+
+    </div>
+</div> -->
+
+<div class="container d-flex justify-content-center content-adjust">
+    <div class="d-flex flex-column justify-content-between" style="margin-top: -8px;">
+        <div class="card mt-5 p-5" style="height: 150px;width: 450px;">
+            <!-- <div class="logo mb-3"><img src="https://imgur.com/zydrQCr.png"></div> -->
+            <div style="margin-top: -46px;">
+                <p class="mb-1">Book your tickets</p>
+                <h4 class="mb-5 text-white">for upcoming Blockbuster!</h4>
+            </div>
+        </div>
+        <div class="card two bg-white px-5 py-4 mb-3" [formGroup]="loginForm">
+            <div class="form-group" *ngIf="!isLogin">
+                <input type="text" class="form-control" formControlName="name" id="name" required><label
+                    class="form-control-placeholder" for="name">Name</label>
+                <div *ngIf="formValidator['name'].touched && formValidator['name'].invalid" class="show-error">
+                    <div *ngIf="formValidator['name'].errors?.['required'] && formValidator['name'].dirty">Please
+                        enter
+                        your name</div>
+                    <div *ngIf="formValidator['name'].errors?.['minlength'] && formValidator['name'].dirty">Name
+                        should
+                        be atleast 3 character</div>
+                </div>
+            </div>
+
+            <div class="form-group" *ngIf="!isLogin">
+                <input type="tel" class="form-control" id="mobile" formControlName="mobile" required><label
+                    class="form-control-placeholder" for="mobile">Mobile</label>
+                <div *ngIf="formValidator['mobile'].touched && formValidator['mobile'].invalid" class="show-error">
+                    <div *ngIf="formValidator['mobile'].errors?.['required'] && formValidator['mobile'].dirty">Please
+                        enter mobile number</div>
+                    <div *ngIf="formValidator['mobile'].errors?.['pattern'] && formValidator['mobile'].dirty">Please
+                        enter 9 digit mobile number</div>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <input type="email" autocomplete="off" formControlName="email" class="form-control" id="mail"
+                    required><label class="form-control-placeholder" for="mail">Email</label>
+                <div *ngIf="formValidator['email'].touched && formValidator['email'].invalid" class="show-error">
+                    <div *ngIf="formValidator['email'].errors?.['required'] && formValidator['email'].dirty">Please
+                        enter
+                        email id</div>
+                    <div *ngIf="formValidator['email'].errors?.['email'] && formValidator['email'].dirty">Please enter
+                        valid
+                        email id</div>
+                </div>
+            </div>
+
+
+            <!-- <div class="form-group" *ngIf="isLogin">
+                <select class="form-select" formControlName="role" aria-label="Default select example">
+                    <option selected value="">Select Role</option>
+                    <option value="Customer">Customer</option>
+                    <option value="Partner">Partner</option>
+                    <option value="Staff">Staff</option>
+                </select>
+                <div *ngIf="formValidator['role'].touched && formValidator['role'].invalid" class="show-error">
+                    <div *ngIf="formValidator['role'].errors?.['required'] && formValidator['role'].dirty">
+                        Please
+                        select role
+                    </div>
+                </div>
+            </div> -->
+
+
+            <div class="form-group">
+                <input type="password" class="form-control" formControlName="password" id="password" required><label
+                    class="form-control-placeholder" for="password">Password</label>
+                <div *ngIf="formValidator['password'].touched && formValidator['password'].invalid" class="show-error">
+                    <div *ngIf="formValidator['password'].errors?.['required'] && formValidator['password'].dirty">
+                        Please
+                        enter
+                        email id</div>
+                    <div *ngIf="formValidator['password'].errors?.['minlength'] && formValidator['password'].dirty">
+                        Password should be minimum 6 character </div>
+                </div>
+            </div>
+
+            <button class="btn btn-primary btn-block btn-lg mt-1 mb-2" *ngIf="isLogin" (click)="login()">Sign
+                In</button>
+            <button class="btn btn-primary btn-lg mt-1 mb-2" style="margin-top: -24px;" *ngIf="!isLogin"
+                (click)="registerUser();">Sign Up</button>
+            <button class="btn btn-primary btn-lg  mt-1 mb-2" *ngIf="!isLogin"
+                (click)="isLogin= !isLogin"><small>Already
+                    signed
+                    up?</small><span>&nbsp;Log in</span> </button>
+
+            <button class="btn btn-primary btn-block btn-lg mt-1 mb-2" *ngIf="isLogin"
+                (click)="isLogin= !isLogin"><span>Get
+                    started<i class="fas fa-long-arrow-alt-right ml-2"></i></span></button>
+
+
+
+        </div>
+    </div>
+    <div *ngIf=" !isLogin" class="vl"></div>
+    <div *ngIf=" !isLogin" class="d-flex flex-column justify-content-between"
+        style="margin-top: 100px;margin-left: 50px;">
+        <div class="card mt-3 p-5" style="height: 250px;width: 450px;">
+            <div>
+                <p class="mb-1">Want to partner with us?</p>
+                <h4 class="mb-5 text-white">Register now</h4>
+                <button class="btn btn-primary-flip btn-lg" *ngIf=" !isLogin"
+                    (click)="registerPartner();isLogin= !isLogin">Partner with us</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<app-footer></app-footer>

@@ -24,7 +24,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxIdleTimeoutModule } from 'ngx-idle-timeout';
 import { ToastrModule } from 'ng6-toastr-notifications';
 import { NgxSpinnerModule } from 'ngx-spinner';
-
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import {
+  IgxCalendarModule,
+  IgxDialogModule
+} from "igniteui-angular";
 
 const config: SocketIoConfig = {
 	url: environment.socketUrl, // socket server url;
@@ -41,7 +46,9 @@ const config: SocketIoConfig = {
     HomeComponent,
     ViewSeatsComponent,
     PaymentGatewayComponent,
-    DialogComponent
+    DialogComponent,
+    HeaderComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +58,8 @@ const config: SocketIoConfig = {
     BrowserAnimationsModule,NgxSpinnerModule,
     TooltipModule.forRoot(),ToastrModule.forRoot(),
 		SocketIoModule.forRoot(config), 
-    MaterialModule,
+    MaterialModule,IgxCalendarModule,
+    IgxDialogModule,
     NgxIdleTimeoutModule,
     FlexLayoutModule,PlutoPaymentModule,
     NgxStripeModule.forRoot(
