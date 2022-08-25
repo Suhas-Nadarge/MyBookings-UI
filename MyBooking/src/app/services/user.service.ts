@@ -7,7 +7,7 @@ import { User } from '../model/user';
   providedIn: 'root'
 })
 export class UserService {
-  private user_url: string = 'https://localhost:3000/users';
+  private user_url: string = 'http://localhost:3000/users';
   private user!: User;
   constructor(private _httpClient: HttpClient) { }
 
@@ -22,11 +22,7 @@ export class UserService {
     return this._httpClient.get(this.user_url + "/" + userId);
   }
 
-  getStaffAppointmentByID(id: string): Observable<any> {
-    var staffId = id
-    return this._httpClient.get(this.user_url + "/staff?staffid=" + staffId);
-  }
-
+  
   setUser(user: User) {
     this.user = user;
   }
@@ -35,10 +31,7 @@ export class UserService {
     return this.user;
   }
 
-  updateUser(user: User): Observable<any> {
-    return this._httpClient.post(this.user_url + "/updateUser", user, this.httpOptions);
-  }
-
+ 
   registerUser(user: User): Observable<any> {
     return this._httpClient.post(this.user_url+ "/register", user, this.httpOptions);
   }
@@ -46,21 +39,5 @@ export class UserService {
   loginUser(user: User): Observable<any> {
     return this._httpClient.post(this.user_url + "/login", user, this.httpOptions)
   }
-
-  // getAppointments(company: ICompany): Observable<IAppointmentDto[]> {
-  //   return this._httpClient.post<IAppointmentDto[]>(this.user_url + "/appointment", company, this.httpOptions)
-  // }
-
-  // updateAppointment(appointment: IAppointment): Observable<IAppointment> {
-  //   return this._httpClient.post<IAppointment>(this.user_url + "/update", appointment, this.httpOptions)
-  // }
-
-  // cancelAppointment(appointment:IAppointment):Observable<IAppointment>{
-  //   return this._httpClient.post<IAppointment>(this.user_url + "/cancel", appointment, this.httpOptions)
-  // }
-
-  // addRatingAppointment(appointment:IAppointment):Observable<IAppointment>{
-  //   return this._httpClient.post<IAppointment>(this.user_url + "/rate", appointment, this.httpOptions)
-  // }
 
 }
