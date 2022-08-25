@@ -30,6 +30,8 @@ import {
   IgxCalendarModule,
   IgxDialogModule
 } from "igniteui-angular";
+import { ValidatorService } from './services/validators.service';
+import { UserService } from './services/user.service';
 
 const config: SocketIoConfig = {
 	url: environment.socketUrl, // socket server url;
@@ -67,7 +69,7 @@ const config: SocketIoConfig = {
     ),
     PlutoPaymentModule.forRoot("449f8516-791a-49ab-a09d-50f79a0678b6")
   ],
-  providers: [SocketService],
+  providers: [SocketService,ValidatorService,UserService],
   entryComponents: [DialogComponent],
   bootstrap: [AppComponent]
 })

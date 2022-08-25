@@ -40,7 +40,7 @@ export class UserService {
   }
 
   registerUser(user: User): Observable<any> {
-    return this._httpClient.post(this.user_url, user, this.httpOptions);
+    return this._httpClient.post(this.user_url+ "/register", user, this.httpOptions);
   }
 
   loginUser(user: User): Observable<any> {

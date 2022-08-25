@@ -77,7 +77,7 @@
             </div>
 
             <div class="form-group" *ngIf="!isLogin">
-                <input type="tel" class="form-control" id="mobile" formControlName="mobile" required><label
+                <input type="tel" class="form-control" (keydown)="validatorService.allowedOnlyKeyboardNumbers($event)" id="mobile" formControlName="mobile" required><label
                     class="form-control-placeholder" for="mobile">Mobile</label>
                 <div *ngIf="formValidator['mobile'].touched && formValidator['mobile'].invalid" class="show-error">
                     <div *ngIf="formValidator['mobile'].errors?.['required'] && formValidator['mobile'].dirty">Please

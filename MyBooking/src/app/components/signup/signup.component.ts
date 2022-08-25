@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { UserService } from 'src/app/services/user.service';
+import { ValidatorService } from 'src/app/services/validators.service';
 
 @Component({
   selector: 'app-signup',
@@ -15,15 +16,9 @@ export class SignupComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private router: Router,
     private _userService: UserService,
-    private toastr: ToastrManager,
-    private _loginService: UserService) { }
+    private toastr: ToastrManager,public validatorService: ValidatorService
+    ) { }
   ngOnInit(): void {
-    // if (localStorage.getItem('id')) {
-    //   localStorage.getItem('isDoctor') ? this.router.navigate(['/pages/appointments/view-appointments']) : this.router.navigate(['/pages/appointments/search'])
-    // } else {
-    //   this.createForm();
-    // }
-
     this.createForm();
   }
 
@@ -34,7 +29,6 @@ export class SignupComponent implements OnInit {
       name: ['', [Validators.required, Validators.minLength(3)]],
       mobile: ['', [Validators.required, Validators.pattern("^((\\+353-?)|0)?[0-9]{9}$")]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      role: ['', Validators.required]
     });
   }
 
@@ -48,29 +42,10 @@ export class SignupComponent implements OnInit {
 
   login() {
     let requestObj = this.loginForm.value;
-    if (requestObj['role'] === 'Customer') {
-      this.userlogin(requestObj)
-    }
-    else if (requestObj['role'] === 'Partner') {
-      this.partnerLogin(requestObj);
-    }
-    else if (requestObj['role'] === 'Staff') {
-      this.staffLogin(requestObj);
-    }
-    else { this.toastr.errorToastr('Please enter valid credentials.') }
-
-  }
-
-  partnerLogin(requestObj: any) {
-    
-  }
-
-  userlogin(requestObj: any) {
     this._userService.loginUser(requestObj).subscribe({
       next: (v: { userId: string; name: string; }) => {
         if (v) {
           console.log(v)
-          localStorage.setItem('role', requestObj['role'])
           localStorage.setItem('id', v.userId)
           localStorage.setItem('name', v.name)
          
@@ -93,12 +68,14 @@ export class SignupComponent implements OnInit {
     });
   }
 
-  staffLogin(requestObj: any) {
+  partnerLogin(requestObj: any) {
     
   }
 
+  
+
   registerUser(): any {
-    this.loginForm.controls["role"].setValue("Customer")
+    // this.loginForm.controls["role"].setValue("Customer")
     let isInvalid = false;
     Object.keys(this.loginForm.controls).forEach(element => {
       if (this.loginForm.controls[element].value === '') {
@@ -109,14 +86,15 @@ export class SignupComponent implements OnInit {
 
     if (!isInvalid) {
       let requestObj = this.loginForm?.value;
+      // requestObj['pasword']= await .hash(requestObj, 10)
+
       this._userService.registerUser(requestObj)
         .subscribe({
           next: (v) => {
             this.toastr.successToastr('User Registered successfully, check your mail for the confirmation!', 'Success');
             this.loginForm.reset();
             this.isLogin = true;
-            this.loginForm.controls["role"].setValue("")
-            window.location.reload();
+            // window.location.reload();
           }
           , error: (err: { [x: string]: { [x: string]: any; }; }) => {
             {
