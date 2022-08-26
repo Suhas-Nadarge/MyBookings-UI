@@ -52,10 +52,7 @@ export class SignupComponent implements OnInit {
           // this._loginService.setCustomer(true);
           this.toastr.successToastr('Logged in successfully!', 'Success');
           this.isLogin = true;
-          this.router.navigate(['/'])
-          window.location.reload();
-
-
+          this.router.navigate(['/home'])
         } else {
           this.toastr.errorToastr('Please enter valid credentials.')
         }

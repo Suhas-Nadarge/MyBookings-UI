@@ -36,7 +36,7 @@ export class ViewSeatsComponent implements OnInit {
   constructor(
 		private socketService: SocketService,public router:Router,public toastr: ToastrManager 
 	) { 
-    this.toastr.warningToastr('Please select the future date', 'Warning')
+    // this.toastr.warningToastr('Please select the future date', 'Warning')
   }
 
   ngOnInit(): void {
