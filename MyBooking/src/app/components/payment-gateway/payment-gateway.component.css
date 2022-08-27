@@ -64,8 +64,7 @@ body {
   flex-shrink: 0;
   align-self: flex-start;
   margin: 3px 0 0 8px;
-  min-width: 46px;
-  max-width: 46px;
+ 
   box-sizing: border-box;
   justify-content: center;
 }
