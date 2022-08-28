@@ -6,6 +6,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ViewSeatsComponent } from './components/view-seats/view-seats.component';
 import { PaymentGatewayComponent } from './components/payment-gateway/payment-gateway.component';
 import { DetailsComponent } from './components/details/details.component';
+import { MyBookingDashboardComponent } from './components/my-booking-dashboard/my-booking-dashboard.component';
 
 
 
@@ -32,7 +33,10 @@ const routes: Routes = [
     path: 'payment-gateway',
     component: PaymentGatewayComponent
   },
-
+  {
+    path: 'booking-dashboard',
+    component: MyBookingDashboardComponent
+  },
   {
     path: '**',
     component: SignupComponent

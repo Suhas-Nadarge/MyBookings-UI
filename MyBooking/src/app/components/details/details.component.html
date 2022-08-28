@@ -1,3 +1,4 @@
+<!-- For all images being used we are using live urls from bookmyshow.com -->
 <div class="container eQtXbA" [style]="backgroundGrad">
     <div class="cUDDgh">
         <div class="eWuQcQ">
@@ -79,16 +80,39 @@
             </div>
             <div class="sc-qswwm9-8 jayiEd">
                 <div id="page-cta-container" class="sc-11ze7wi-0 jMCuom">
-                    <button data-phase="postRelease" class="sc-8f9mtj-0 sc-8f9mtj-1 sc-1vmod7e-0 gsJmXR"
-                        (click)="bookTicket()">
+                    <button data-phase="postRelease" data-toggle="modal" data-target="#exampleModal" class="sc-8f9mtj-0 sc-8f9mtj-1 sc-1vmod7e-0 gsJmXR"
+                        >
                         <div class="sc-1vmod7e-2 iBonLL">
                             <span style="font-weight: 500; font-size: 16px; color: rgb(255, 255, 255);">
                                 Book tickets
                             </span>
+                            
                         </div>
                     </button>
+                    <!-- <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">Book
+                                Ticket</button> -->
                 </div>
             </div>
         </div>
     </div>
+    <!-- calendar -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Select Date and Time</h5>
+                <button type="button" class="btn-close" #myModalClose data-dismiss="modal"
+                    aria-label="Close"> <span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <app-calender-view (newItemEvent)="getData($event)"></app-calender-view>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-dark" (click)="closeModal($event)">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </div>

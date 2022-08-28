@@ -16,3 +16,11 @@ export interface Movies {
     movieCategory?: string;
     movieLaunchDate?: any;
 }
+export interface Tickets {
+    id?: any;
+    movieName?: string;
+    movieLaunchDate?: any;
+    seatNo: string;
+    name:string;
+    showTime: string;
+}

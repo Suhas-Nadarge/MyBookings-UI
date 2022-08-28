@@ -221,7 +221,7 @@ export const MOVIELIST = [
     },
     {
         "id": 6,
-        "movieName": "The Dark Knight",
+        "movieName": "The Bullet Train",
         "movieGenere": [
             {
                 "genere": "Action",
@@ -258,14 +258,14 @@ export const MOVIELIST = [
                 "langLink": "https://in.bookmyshow.com/explore/hindi-movies-mumbai"
             }
         ],
-        "imgURL": "/assets/img/movie-1.jpg",
+        "imgURL": "/assets/img/movie-6.jpg",
         "movieDuration": "2h 12m",
         "movieCategory": "UA",
-        "movieLaunchDate": "25 Aug, 2022"
+        "movieLaunchDate": "29 Aug, 2022"
     },
     {
         "id": 7,
-        "movieName": "The Dark Knight",
+        "movieName": "Doctor Strange: In The Multiverse Of Madness",
         "movieGenere": [
             {
                 "genere": "Action",
@@ -302,14 +302,14 @@ export const MOVIELIST = [
                 "langLink": "https://in.bookmyshow.com/explore/hindi-movies-mumbai"
             }
         ],
-        "imgURL": "/assets/img/movie-1.jpg",
+        "imgURL": "/assets/img/movie-7.jpg",
         "movieDuration": "2h 12m",
         "movieCategory": "UA",
-        "movieLaunchDate": "25 Aug, 2022"
+        "movieLaunchDate": "25 Sept, 2022"
     },
     {
         "id": 8,
-        "movieName": "The Dark Knight",
+        "movieName": "Elvis",
         "movieGenere": [
             {
                 "genere": "Action",
@@ -346,14 +346,14 @@ export const MOVIELIST = [
                 "langLink": "https://in.bookmyshow.com/explore/hindi-movies-mumbai"
             }
         ],
-        "imgURL": "/assets/img/movie-1.jpg",
+        "imgURL": "/assets/img/movie-8.jpg",
         "movieDuration": "2h 12m",
         "movieCategory": "UA",
         "movieLaunchDate": "25 Aug, 2022"
     },
     {
         "id": 9,
-        "movieName": "The Dark Knight",
+        "movieName": "Spider-Man: Far From Home",
         "movieGenere": [
             {
                 "genere": "Action",
@@ -390,14 +390,14 @@ export const MOVIELIST = [
                 "langLink": "https://in.bookmyshow.com/explore/hindi-movies-mumbai"
             }
         ],
-        "imgURL": "/assets/img/movie-1.jpg",
+        "imgURL": "/assets/img/movie-9.jpg",
         "movieDuration": "2h 12m",
         "movieCategory": "UA",
         "movieLaunchDate": "25 Aug, 2022"
     },
     {
         "id": 10,
-        "movieName": "The Dark Knight",
+        "movieName": "Jumanji: Welcome To The Jungle",
         "movieGenere": [
             {
                 "genere": "Action",
@@ -434,7 +434,7 @@ export const MOVIELIST = [
                 "langLink": "https://in.bookmyshow.com/explore/hindi-movies-mumbai"
             }
         ],
-        "imgURL": "/assets/img/movie-1.jpg",
+        "imgURL": "/assets/img/movie-10.jpg",
         "movieDuration": "2h 12m",
         "movieCategory": "UA",
         "movieLaunchDate": "25 Aug, 2022"

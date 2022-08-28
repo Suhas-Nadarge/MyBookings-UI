@@ -17,7 +17,7 @@ export class SocketService {
   fetchSeats() {
 		// this.socket.emit('my broadcast');
     this.socket.on('my broadcast', (data: any) => {
-      console.log('Emitted-**------',data);
+      console.log('Data Emitted------',data);
       this.data = data
     this.setData(this.data)
     });

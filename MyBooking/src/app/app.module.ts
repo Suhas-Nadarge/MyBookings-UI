@@ -20,8 +20,7 @@ import { NgxStripeModule } from "ngx-stripe";
 import { MaterialModule } from "./material.module";
 import { PlutoPaymentModule } from './pluto-angular/pluto-payment.module';
 import { DialogComponent } from './dialog/dialog.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgxIdleTimeoutModule } from 'ngx-idle-timeout';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ng6-toastr-notifications';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { HeaderComponent } from './components/header/header.component';
@@ -33,6 +32,8 @@ import {
 import { ValidatorService } from './services/validators.service';
 import { UserService } from './services/user.service';
 import { DetailsComponent } from './components/details/details.component';
+import { CalenderViewComponent } from './components/calender-view/calender-view.component';
+import { MyBookingDashboardComponent } from './components/my-booking-dashboard/my-booking-dashboard.component';
 
 const config: SocketIoConfig = {
 	url: environment.socketUrl, // socket server url;
@@ -53,18 +54,19 @@ const config: SocketIoConfig = {
     HeaderComponent,
     FooterComponent,
     DetailsComponent,
+    CalenderViewComponent,
+    MyBookingDashboardComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,ReactiveFormsModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
+    ReactiveFormsModule,BrowserAnimationsModule,
+    AppRoutingModule,NoopAnimationsModule,
     BrowserAnimationsModule,NgxSpinnerModule,
     TooltipModule.forRoot(),ToastrModule.forRoot(),
 		SocketIoModule.forRoot(config), 
     MaterialModule,IgxCalendarModule,
     IgxDialogModule,
-    NgxIdleTimeoutModule,
     FlexLayoutModule,PlutoPaymentModule,
     NgxStripeModule.forRoot(
       "pk_test_51Ii5RpH2XTJohkGafOSn3aoFFDjfCE4G9jmW48Byd8OS0u2707YHusT5PojHOwWAys9HbvNylw7qDk0KkMZomdG600TJYNYj20"

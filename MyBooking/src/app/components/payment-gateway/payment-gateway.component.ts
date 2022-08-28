@@ -1,12 +1,13 @@
 import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StripeService, StripeCardComponent } from "ngx-stripe";
 import { interval, timer } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { switchMap } from 'rxjs/operators';
 import { DialogComponent } from 'src/app/dialog/dialog.component';
+import { IBookingForm } from 'src/app/model/bookingFrom';
 import { PlutoPaymentService } from 'src/app/pluto-angular/services/pluto-payment.service';
 
 @Component({
@@ -21,16 +22,25 @@ export class PaymentGatewayComponent implements OnInit {
   paying = false;
   timer$ = timer(192000);
   countDown$ = interval(1000).pipe(takeUntil(this.timer$));
-
+  bookingForm!: IBookingForm
+  public cart: any = {
+    selectedSeats: [],
+    seatsToSave: [],
+    totalPrice: 0,
+    cartId: "",
+    eventId: 0
+  };
   constructor(
     private fb: FormBuilder,
     private dialog: MatDialog,
     private plutoService: PlutoPaymentService,
     private stripeService: StripeService,
-    public router: Router
+    public router: Router,
+    public route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+  this.getRouteData();
     this.paymentForm = this.fb.group({
       name: ["Test Demo", [Validators.required]],
       amount: [1005, [Validators.required, Validators.pattern(/\d+/)]]
@@ -43,6 +53,15 @@ export class PaymentGatewayComponent implements OnInit {
       }
     )
   }
+  
+
+  getRouteData() {
+    this.bookingForm = JSON.parse(this.route.snapshot.paramMap.get('bookingData') || '{}')
+    this.cart = JSON.parse(this.route.snapshot.paramMap.get('cart') || '{}')
+    console.log(this.bookingForm);
+    console.log(this.cart);
+  }
+
 
   pay(): void {
     if (this.paymentForm.valid) {

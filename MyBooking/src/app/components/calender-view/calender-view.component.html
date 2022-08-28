@@ -1,0 +1,50 @@
+
+<div class="main-container" [formGroup]="bookingForm">
+
+    <div class="row mx-auto justify-content-md-center" style="border: aliceblue;">
+        <div class="col-md-7">
+            <article class="calendar-wrapper">
+                <igx-calendar [weekStart]="1" [hasHeader]="false" formControlName="show_date"
+                    (selected)="changeDate($event)">
+                </igx-calendar>
+            </article>
+        </div>
+
+        <div class="col-md-5">
+            <h6> Select Slots <span class="text-danger"><b> *</b></span> </h6>
+            <table class="table table-borderless">
+                <tbody>
+                    <tr *ngFor="let item of timeSlot; let i = index">
+                        <!-- {{i}} -->
+                        <td> <button type="button" data-toggle="tooltip" data-placement="top" title=""
+                                [ngClass]="item.slot_A.isAvailable ? 'col btn btn btn-outline-success' : 'col btn btn-danger'"
+                                [disabled]="!item?.slot_A?.isAvailable"
+                                (click)="selectSlot(item?.slot_A?.id,item?.slot_A?.value)">{{item?.slot_A?.value}}</button>
+                        </td>
+                        <td> <button
+                                [ngClass]="item.slot_B.isAvailable ? 'col btn btn btn-outline-success' : 'col btn btn-danger'"
+                                [disabled]="!item?.slot_B?.isAvailable"
+                                (click)="selectSlot(item?.slot_B?.id,item?.slot_B?.value)">{{item?.slot_B?.value}}</button>
+                        </td>
+                        <td> <button
+                                [ngClass]="item.slot_C.isAvailable ? 'col btn btn btn-outline-success' : 'col btn btn-danger'"
+                                [disabled]="!item?.slot_C?.isAvailable"
+                                (click)="selectSlot(item?.slot_C?.id,item?.slot_C?.value)">{{item?.slot_C?.value}}</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div>
+                <div class='box green'></div>&nbsp;Available
+            </div>
+            <br>
+            <div>
+                <div class='box red'></div>&nbsp; Fully Booked
+            </div>
+            <br>
+        </div>
+
+    </div>
+</div>
+
+

@@ -1,21 +1,32 @@
+
+
 <div>
     <div class="col-lg-12 seat-container">
         <h3>
-            Seat Chart Layout
+            Movie Details
         </h3>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Audi-1</h5>
+                <!-- TODO: Enter movie Details here -->
+                <h6 class="card-subtitle mb-2 text-muted">Enter Movie details</h6>
+                <p class="card-text">{{this.bookingForm.show_date | date }} {{this.bookingForm.slot}}</p>
+            </div>
+        </div>
+       
 
         <div class="row">
             <div class="col-md-9 d-flex justify-content-center">
                 <div class="p-2 d-flex justify-content-between align-items-center">
-                    <div> Availble - </div>
+                    <div> Availble</div>
                     <div class="seat-item seat-space seat-available"></div>
                 </div>
                 <div class="p-2 d-flex justify-content-between align-items-center">
-                    <div> Unavailable - </div>
+                    <div> Unavailable </div>
                     <div class="seat-item seat-space seat-unavailable"></div>
                 </div>
                 <div class="p-2 d-flex justify-content-between align-items-center">
-                    <div> Booked - </div>
+                    <div> Selected</div>
                     <div class="seat-item seat-space seat-booked"></div>
                 </div>
             </div>
@@ -53,23 +64,35 @@
             <div class="col-md-3 mt-5">
                 <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
                     <div class="card-body">
-                        <div class=" summary-bar">
-                            <div class="">
-                                <div>
-                                    <h5>Total Selected : {{ cart.selectedSeats.length }}</h5>
-                                    <h5>Total Amount :&nbsp;&nbsp; {{cart.totalPrice}} Euro</h5>
-                                </div>
-                            </div>
-                            <div class=" selected-seats">
-                                <h5 class=" no-padding">Selected Seats : </h5>
-                                <span *ngFor="let seatLabel of cart.selectedSeats"
-                                    class="badge badge-primary">{{seatLabel}}</span>
-                            </div>
-                            <button [disabled]="cart.selectedSeats.length == 0" type="button" (click)="proceedBooking()"
-                                class="btn btn-primary">Book Now</button>
+                <div class=" summary-bar">
+                    <div class="">
+                        <div>
+                            <h5>Total Selected : {{ cart.selectedSeats.length }}</h5>
+                            <h5>Total Amount :&nbsp;&nbsp; {{cart.totalPrice}} Euro</h5>
                         </div>
                     </div>
+                    <div class=" selected-seats">
+                        <h5 class=" no-padding">Selected Seats : </h5>
+                        <span *ngFor="let seatLabel of cart.selectedSeats"
+                            class="badge badge-primary">{{seatLabel}}</span>
+                    </div>
+                    <button [disabled]="cart.selectedSeats.length == 0" type="button" (click)="proceedBooking()"
+                        class="btn btn-primary">Book Now</button>
+                    </div>
+                    </div>
+                        <!-- <div>
+            <div class='box green'></div>&nbsp;Available Appointments
+          </div>
+          <br>
+          <div>
+            <div class='box red'></div>&nbsp; Booked Appointments
+          </div>
+          <br>
+          <div>
+            <div class='box grey'></div>&nbsp;Not Available
+          </div> -->
                 </div>
+
             </div>
         </div>
     </div>

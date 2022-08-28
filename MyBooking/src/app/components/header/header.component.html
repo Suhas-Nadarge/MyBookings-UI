@@ -1,9 +1,9 @@
 <header id="header">
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 shadow-sm">
-        <h5 class="my-0 mr-md-auto font-weight-normal">MyBookings.ie</h5>
+        <h5 class="my-0 mr-md-auto font-weight-normal" (click)="router.navigate(['/home'])">MyBookings.ie</h5>
         <nav class="my-2 my-md-0 mr-md-3">
-            <a class="p-2" href="#">Movie</a>
-            <a class="p-2" href="#">Stream</a>
+            <a class="p-2" (click)="router.navigate(['/home'])">Movie</a>
+            <a class="p-2" (click)="router.navigate(['/booking-dashboard'])">Booking History</a>
             <a class="p-2" href="#">Events</a>
             <a class="p-2" href="#">Activities</a>
         </nav>
@@ -11,6 +11,8 @@
             <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-secondary" type="submit">Search</button>
         </form>
-        <a class="btn btn-outline-primary" href="#">Sign In</a>
+        <a class="btn btn-outline-primary" (click)="logout()" *ngIf="isLoggedIn()">Sign Out</a>
+        <a class="btn btn-outline-primary" (click)="router.navigate(['/sign-up'])" *ngIf="!isLoggedIn()">Sign In</a>
+
     </div>
 </header>

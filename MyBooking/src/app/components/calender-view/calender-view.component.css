@@ -1,0 +1,65 @@
+/* @use '../../variable' as *;
+
+$border-color: color($color: grays, $variant: 300); */
+
+.igx-calendar__header {
+    background: var(--header-background);
+    color: var(--header-text-color);
+    padding: 1em;
+}
+
+.calendar-wrapper {
+    max-width: 500px;
+    min-width: 300px;
+    border: 1px solid rgb(148, 24, 24);
+    border-radius: 6px;
+    margin: 8px;
+}
+
+.igx-calendar {
+    border-radius: 4px;
+}
+
+.main-container {
+    margin-top: 50px;
+    align-items: center;
+}
+
+
+.box {
+    float: left;
+    height: 20px;
+    width: 20px;
+    margin-bottom: 15px;
+    border: 1px solid black;
+    clear: both;
+}
+
+.red {
+    background-color: #fa3e3e;
+}
+
+.green {
+    background-color: green;
+}
+
+.grey {
+    background-color: grey;
+}
+
+.btn.btn-success:active,
+.btn.btn-success:active {
+    border-color: rgb(158, 152, 152);
+    background-color: rgb(167, 156, 156);
+    /* // color: $color-primary; */
+}
+
+
+
+button:hover {
+    background-color: rgb(47, 202, 33);
+}
+
+button:focus {
+    background-color: hsl(241deg 57% 85%);
+}

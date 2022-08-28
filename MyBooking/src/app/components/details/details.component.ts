@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Movies } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
+import { CalenderViewComponent } from '../calender-view/calender-view.component';
 
 @Component({
   selector: 'app-details',
@@ -9,7 +10,9 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./details.component.css']
 })
 export class DetailsComponent implements OnInit {
-
+  @ViewChild('myModalClose') modalClose!: ElementRef;
+  @ViewChild('exampleModal') modal!:ElementRef;
+  @ViewChild(CalenderViewComponent) child!:CalenderViewComponent;
   movieDetails: Movies = {};
   backgroundGrad: any;
 
@@ -29,6 +32,16 @@ export class DetailsComponent implements OnInit {
 
   bookTicket(): void {
     this.router.navigate(['/view-seats']);
+  }
+
+  closeModal(evt:any) {
+    this.child.bookAppointment();
+  }
+
+  getData(evt:any){
+    //console.log(evt);
+    this.modalClose.nativeElement.click()
+    this.router.navigate(['/view-seats/', { 'bookingData': JSON.stringify(evt) }])
   }
 
 }

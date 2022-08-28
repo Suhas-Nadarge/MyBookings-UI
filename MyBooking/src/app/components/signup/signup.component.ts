@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrManager } from 'ng6-toastr-notifications';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { UserService } from 'src/app/services/user.service';
 import { ValidatorService } from 'src/app/services/validators.service';
 
@@ -16,7 +17,7 @@ export class SignupComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private router: Router,
     private _userService: UserService,
-    private toastr: ToastrManager,public validatorService: ValidatorService
+    private toastr: ToastrManager,public validatorService: ValidatorService, public spinnerService: NgxSpinnerService
     ) { }
   ngOnInit(): void {
     this.createForm();
@@ -41,9 +42,11 @@ export class SignupComponent implements OnInit {
   }
 
   login() {
+    this.spinnerService.show()
     let requestObj = this.loginForm.value;
     this._userService.loginUser(requestObj).subscribe({
       next: (v: { userId: string; name: string; }) => {
+        console.log('backend-'+JSON.stringify(v))
         if (v) {
           console.log(v)
           localStorage.setItem('id', v.userId)

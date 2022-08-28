@@ -74,3 +74,17 @@ export const seatLayout = [
       ]
     }
   ];
+
+  export const timeSlot = [
+    {
+      slot_A: { id: 1, value: '09:00 AM ', isAvailable: true },
+      slot_B: { id: 2, value: '12:00 AM ', isAvailable: true },
+      slot_C: { id: 3, value: '01:00 PM ', isAvailable: true },
+    },
+    {
+      slot_A: { id: 4, value: '02:00 PM ', isAvailable: true },
+      slot_B: { id: 5, value: '04:00 PM ', isAvailable: true },
+      slot_C: { id: 6, value: '09:00 PM ', isAvailable: true },
+    }
+
+  ];
