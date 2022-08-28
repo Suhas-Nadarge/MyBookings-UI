@@ -32,6 +32,7 @@ import {
 } from "igniteui-angular";
 import { ValidatorService } from './services/validators.service';
 import { UserService } from './services/user.service';
+import { DetailsComponent } from './components/details/details.component';
 
 const config: SocketIoConfig = {
 	url: environment.socketUrl, // socket server url;
@@ -51,6 +52,7 @@ const config: SocketIoConfig = {
     DialogComponent,
     HeaderComponent,
     FooterComponent,
+    DetailsComponent,
   ],
   imports: [
     BrowserModule,

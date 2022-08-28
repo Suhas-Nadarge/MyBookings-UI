@@ -5,6 +5,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { HomeComponent } from './components/home/home.component';
 import { ViewSeatsComponent } from './components/view-seats/view-seats.component';
 import { PaymentGatewayComponent } from './components/payment-gateway/payment-gateway.component';
+import { DetailsComponent } from './components/details/details.component';
 
 
 
@@ -24,10 +25,14 @@ const routes: Routes = [
     component: ViewSeatsComponent
   },
   {
+    path: 'details',
+    component: DetailsComponent
+  },
+  {
     path: 'payment-gateway',
     component: PaymentGatewayComponent
   },
-  
+
   {
     path: '**',
     component: SignupComponent

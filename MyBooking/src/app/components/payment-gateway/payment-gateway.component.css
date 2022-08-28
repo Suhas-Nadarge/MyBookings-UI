@@ -1,70 +1,45 @@
-/* form.checkout {
-    max-width: 500px;
-    margin: 2rem auto;
+
+  @import "@angular/material/prebuilt-themes/deeppurple-amber.css";
+  
+  body {
+    background-color: lightgray;
+  }
+  
+  .mat-card {
+    padding: 0px !important;
+  }
+  
+  .mat-card-header-text {
+    margin: 0px !important;
+  }
+  
+  .mat-card-content,
+  .mat-card-actions {
+    padding: 16px !important;
+  }
+  
+  .OrderReviewCountdown_timeOutCounter__pXPsh span {
+    min-width: 10px;
     text-align: center;
-    border: 2px solid #eee;
-    border-radius: 8px;
-    padding: 1rem 2rem;
-    background: white;
-  
-    font-family: monospace;
-    color: #525252;
-    font-size: 1.1rem;
   }
-  
-  form.checkout button {
-    padding: 0.5rem 1rem;
-    color: white;
-    background: coral;
-    border: none;
+  * {
+    -webkit-touch-callout: none;
+  }
+  .OrderReviewCountdown_timeOutCounter__pXPsh {
+    background: #fd5154;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 700;
+    line-height: 26px;
+    letter-spacing: -.08px;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
     border-radius: 4px;
-    margin-top: 1rem;
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin: 3px 0 0 8px;
+   
+    box-sizing: border-box;
+    justify-content: center;
   }
-  
-  form.checkout button:active {
-    background: rgb(165, 76, 43);
-  } */
-@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
-  
-body {
-  background-color: lightgray;
-}
-
-.mat-card {
-  padding: 0px !important;
-}
-
-.mat-card-header-text {
-  margin: 0px !important;
-}
-
-.mat-card-content,
-.mat-card-actions {
-  padding: 16px !important;
-}
-
-.OrderReviewCountdown_timeOutCounter__pXPsh span {
-  min-width: 10px;
-  text-align: center;
-}
-* {
-  -webkit-touch-callout: none;
-}
-.OrderReviewCountdown_timeOutCounter__pXPsh {
-  background: #fd5154;
-  font-size: 16px;
-  color: #fff;
-  font-weight: 700;
-  line-height: 26px;
-  letter-spacing: -.08px;
-  display: flex;
-  align-items: center;
-  padding: 0 8px;
-  border-radius: 4px;
-  flex-shrink: 0;
-  align-self: flex-start;
-  margin: 3px 0 0 8px;
- 
-  box-sizing: border-box;
-  justify-content: center;
-}

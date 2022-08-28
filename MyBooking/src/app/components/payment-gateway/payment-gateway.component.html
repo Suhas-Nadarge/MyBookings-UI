@@ -1,17 +1,20 @@
 <div>
- <div class="row" style="width:100%">
-  <!-- <div class="col-md-9"></div> -->
-  <div class="col-md-12">
-    <div class="OrderReviewCountdown_timeOutCounter__pXPsh">
-      Please pay within &nbsp;<span><b>0</b></span><span><b>4</b></span>:&nbsp;<span><b>3</b></span><span><b>0</b></span>&nbsp; Minutes</div>
+  <div class="row" style="width:100%">
+    <!-- <div class="col-md-9"></div> -->
+    <div class="col-md-12">
+      <div class="OrderReviewCountdown_timeOutCounter__pXPsh">
+        Please pay within
+        <!-- &nbsp;<span><b>0</b></span><span><b>4</b></span>:&nbsp;<span><b>3</b></span><span><b>0</b></span>&nbsp; Minutes -->
+        {{ 180 - (countDown$ | async) }} Seconds
+      </div>
+    </div>
   </div>
- </div>
-<mat-card>
+  <mat-card>
     <mat-card-header>
       <mat-toolbar color="dark">
         <span>Payment Option</span>
       </mat-toolbar>
-      
+
     </mat-card-header>
     <mat-card-content>
       <div [formGroup]="paymentForm" fxLayout="column">

@@ -1,0 +1,94 @@
+<div class="container eQtXbA" [style]="backgroundGrad">
+    <div class="cUDDgh">
+        <div class="eWuQcQ">
+            <section class="sc-bsek5f-0 fSyllq">
+                <div type="vertical" class="sc-echj48-0 iCYiPJ">
+                    <div class="sc-echj48-6 csqwyD" style="border-radius: 16px 16px 0px 0px; object-fit: cover;">
+                        <img [src]=movieDetails.imgURL alt="Liger" width="100%" height="100%" class="sc-echj48-5 hutamn"
+                            style="border-radius: 16px 16px 0px 0px; object-fit: cover;">
+                    </div>
+                    <div class="sc-xta4k3-0 hyjyfR">
+                        <svg width="13" height="13">
+                            <use href=""></use>
+                        </svg>
+                        <span>Trailers (7)</span>
+                    </div>
+                </div>
+                <section type="vertical" color="#000000" class="sc-bsek5f-1 dTPawu">
+                    <span color="#FFFFFF" class="sc-bsek5f-4 eREoZe">
+                        In cinemas
+                    </span>&nbsp;
+                </section>
+            </section>
+        </div>
+        <div class="sc-qswwm9-5 ehwnas">
+            <h1 class="sc-qswwm9-6 hxbOUw">Liger</h1>
+            <section class="sc-ec6ph5-0 bmFtqL">
+                <div class="sc-ec6ph5-1 hFxJGJ">
+                    <svg width="32" height="32">
+                        <use href="/assets/img/heart.png"></use>
+                    </svg>
+                    <span class="sc-ec6ph5-3 ctjtdj">60%</span>
+                    <span class="sc-ec6ph5-4 KmsNs">71.5K ratings</span>
+                    <div class="sc-ec6ph5-5 fsacFf">
+                        <svg width="8" height="8">
+                            <use href=""></use>
+                        </svg>
+                    </div>
+                </div>
+            </section>
+            <section class="sc-ycjzp1-0 duexLW">
+                <div class="sc-ycjzp1-1 fdWjQB">
+                    <div class="sc-ycjzp1-3 gAedkM">
+                        <h5 class="sc-ycjzp1-4 chrNDO">Add your rating &amp; review</h5>
+                        <h6 class="sc-ycjzp1-5 kTptex">Your ratings matter</h6>
+                    </div>
+                    <button class="sc-8f9mtj-0 sc-8f9mtj-1 sc-ycjzp1-6 lftZnN">
+                        <span>Rate now</span>
+                    </button>
+                </div>
+            </section>
+            <div class="sc-2k6tnd-0 ddXVHR">
+                <div class="sc-2k6tnd-1 btqyFP">
+                    <div class="sc-2k6tnd-4 fdHSZD">
+                        <a href="https://in.bookmyshow.com/explore/2d-movies-mumbai" class="sc-2k6tnd-2 iWTape">2D</a>
+                    </div>
+                    <div class="sc-2k6tnd-4 fdHSZD">
+                        <ng-container *ngFor="let language of movieDetails?.movieLanguage; last as isLast">
+                            <a [href]=language.langLink class="sc-2k6tnd-2 iWTape pr-2">
+                                {{ language.lang }}
+                                <span class="sc-2k6tnd-5 eUMuJC" *ngIf="!isLast">,</span>
+                            </a>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="sc-2k6tnd-1 btqyFP">
+                    {{ movieDetails.movieDuration }}
+                    <span class="sc-2k6tnd-5 kvkTzz"> • </span>
+                    <ng-container *ngFor="let genere of movieDetails?.movieGenere; last as isLast">
+                        <a [href]=genere.genereLink class="sc-2k6tnd-2 ijNbsp pr-2" style="color: white !important;">
+                            {{ genere.genere }}
+                            <span class="sc-2k6tnd-5 eUMuJC" *ngIf="!isLast">,</span>
+                        </a>
+                    </ng-container>
+                    <span class="sc-2k6tnd-5 kvkTzz"> • </span>
+                    {{ movieDetails.movieCategory }}
+                    <span class="sc-2k6tnd-5 kvkTzz"> • </span>
+                    {{ movieDetails.movieLaunchDate }}
+                </div>
+            </div>
+            <div class="sc-qswwm9-8 jayiEd">
+                <div id="page-cta-container" class="sc-11ze7wi-0 jMCuom">
+                    <button data-phase="postRelease" class="sc-8f9mtj-0 sc-8f9mtj-1 sc-1vmod7e-0 gsJmXR"
+                        (click)="bookTicket()">
+                        <div class="sc-1vmod7e-2 iBonLL">
+                            <span style="font-weight: 500; font-size: 16px; color: rgb(255, 255, 255);">
+                                Book tickets
+                            </span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

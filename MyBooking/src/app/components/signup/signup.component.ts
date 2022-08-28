@@ -37,7 +37,7 @@ export class SignupComponent implements OnInit {
   }
 
   registerPartner() {
-    this.router.navigate(['/partner-us'])
+    // this.router.navigate(['/partner-us'])
   }
 
   login() {
@@ -48,8 +48,6 @@ export class SignupComponent implements OnInit {
           console.log(v)
           localStorage.setItem('id', v.userId)
           localStorage.setItem('name', v.name)
-         
-          // this._loginService.setCustomer(true);
           this.toastr.successToastr('Logged in successfully!', 'Success');
           this.isLogin = true;
           this.router.navigate(['/home'])
