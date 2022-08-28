@@ -4,11 +4,6 @@
 
 
 
-<!-- The video -->
-<video autoplay muted loop id="myVideo">
-    <source src="rain.mp4" type="video/mp4">
-  </video>
-  
   <!-- Optional: some overlay text to describe the video -->
     <div class="container d-flex justify-content-center content-adjust">
         <div class="d-flex flex-column justify-content-between" style="margin-top: -8px;">
@@ -40,7 +35,7 @@
                         <div *ngIf="formValidator['mobile'].errors?.['required'] && formValidator['mobile'].dirty">Please
                             enter mobile number</div>
                         <div *ngIf="formValidator['mobile'].errors?.['pattern'] && formValidator['mobile'].dirty">Please
-                            enter 9 digit mobile number</div>
+                            enter 10 digit mobile number</div>
                     </div>
     
                 </div>

@@ -7,6 +7,7 @@ import { ViewSeatsComponent } from './components/view-seats/view-seats.component
 import { PaymentGatewayComponent } from './components/payment-gateway/payment-gateway.component';
 import { DetailsComponent } from './components/details/details.component';
 import { MyBookingDashboardComponent } from './components/my-booking-dashboard/my-booking-dashboard.component';
+import { AuthGuard } from './services/auth.guard';
 
 
 
@@ -15,27 +16,27 @@ import { MyBookingDashboardComponent } from './components/my-booking-dashboard/m
 const routes: Routes = [
   {
     path: '',
-    component: SignupComponent
+    component: SignupComponent, canActivate: [AuthGuard]
   },
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,canActivate: [AuthGuard]
   },
   {
     path: 'view-seats',
-    component: ViewSeatsComponent
+    component: ViewSeatsComponent,canActivate: [AuthGuard]
   },
   {
     path: 'details',
-    component: DetailsComponent
+    component: DetailsComponent,canActivate: [AuthGuard]
   },
   {
     path: 'payment-gateway',
-    component: PaymentGatewayComponent
+    component: PaymentGatewayComponent,canActivate: [AuthGuard]
   },
   {
     path: 'booking-dashboard',
-    component: MyBookingDashboardComponent
+    component: MyBookingDashboardComponent,canActivate: [AuthGuard]
   },
   {
     path: '**',

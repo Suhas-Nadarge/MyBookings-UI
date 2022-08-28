@@ -28,7 +28,7 @@ export class SignupComponent implements OnInit {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       name: ['', [Validators.required, Validators.minLength(3)]],
-      mobile: ['', [Validators.required, Validators.pattern("^((\\+353-?)|0)?[0-9]{9}$")]],
+      mobile: ['', [Validators.required, Validators.maxLength(10)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
@@ -44,25 +44,23 @@ export class SignupComponent implements OnInit {
   login() {
     this.spinnerService.show()
     let requestObj = this.loginForm.value;
-    this._userService.loginUser(requestObj).subscribe({
-      next: (v: { userId: string; name: string; }) => {
-        console.log('backend-'+JSON.stringify(v))
-        if (v) {
-          console.log(v)
-          localStorage.setItem('id', v.userId)
-          localStorage.setItem('name', v.name)
-          this.toastr.successToastr('Logged in successfully!', 'Success');
-          this.isLogin = true;
-          this.router.navigate(['/home'])
-        } else {
-          this.toastr.errorToastr('Please enter valid credentials.')
-        }
-        console.log(v);
-      }, error: (err: any) => {
-        (err: any) => {
-          this.toastr.errorToastr(err['error']['message'] ? err['error']['message'] : 'Please enter valid credentials!', 'Error');
-        }
+    this._userService.loginUser(requestObj).subscribe((data:any) => {
+      if(data['status'] === 'success' && data){
+        localStorage.setItem('email',requestObj.email);
+        localStorage.setItem('name',data.name);
+
+        this.spinnerService.hide();
+        this.toastr.successToastr('Logged in successfully!', 'Success');
+        this.isLogin = true;
+        this.router.navigate(['/home'])
+      }else {
+        this.toastr.errorToastr('Please enter valid credentials.')
+        this.spinnerService.hide()
       }
+    },
+    (err: any)=>{
+      this.toastr.errorToastr(err['error']['message'] ? err['error']['message'] : 'Please enter valid credentials!', 'Error');
+      this.spinnerService.hide();
     });
   }
 
@@ -86,22 +84,27 @@ export class SignupComponent implements OnInit {
       let requestObj = this.loginForm?.value;
       // requestObj['pasword']= await .hash(requestObj, 10)
 
-      this._userService.registerUser(requestObj)
-        .subscribe({
-          next: (v) => {
-            this.toastr.successToastr('User Registered successfully, check your mail for the confirmation!', 'Success');
-            this.loginForm.reset();
-            this.isLogin = true;
-            // window.location.reload();
-          }
-          , error: (err: { [x: string]: { [x: string]: any; }; }) => {
-            {
-              this.toastr.errorToastr(err['error']['message'] ? err['error']['message'] : 'Something went wrong!', 'Error');
-              console.log(err['error']['message'])
-            }
-          }
-        });
-    }
+      this._userService.registerUser(requestObj).subscribe((data:any) => {
+        if(data['status'] === 'success'){
+        this.spinnerService.hide();
+        this.toastr.successToastr('User Registered successfully, check your mail for the confirmation!', 'Success');
+        this.loginForm.reset();
+        this.isLogin = true;
+        
+      } else {
+        this.spinnerService.hide();
+          // this.showLoginError = true;
+        this.toastr.errorToastr('Something went wrong!', 'Error');
+
+        }
+        console.log(data);
+      },
+      (err: any)=>{
+        this.spinnerService.hide();
+        this.toastr.errorToastr(err['error']['message'] ? err['error']['message'] : 'Something went wrong!', 'Error');
+        console.log(err['error']['message'])
+      });
   }
+}
 
 }

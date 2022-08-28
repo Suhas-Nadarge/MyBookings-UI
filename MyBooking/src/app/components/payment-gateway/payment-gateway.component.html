@@ -9,34 +9,44 @@
       </div>
     </div>
   </div>
-  <mat-card>
-    <mat-card-header>
-      <mat-toolbar color="dark">
-        <span>Payment Option</span>
-      </mat-toolbar>
 
-    </mat-card-header>
-    <mat-card-content>
-      <div [formGroup]="paymentForm" fxLayout="column">
-        <mat-form-field>
-          <mat-label>Name</mat-label>
-          <input matInput formControlName="name" />
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Amount</mat-label>
-          <input matInput type="number" formControlName="amount" />
-        </mat-form-field>
-        <ngx-stripe-card></ngx-stripe-card>
-      </div>
-    </mat-card-content>
-    <mat-card-actions fxLayout="row">
-      <mat-divider></mat-divider>
-      <span fxFlex></span>
-      <button mat-raised-button style="margin-top: 16px" color="primary" (click)="pay()" [disabled]="paying">
-        <span *ngIf="!paying">PAY</span>
-        <span *ngIf="paying">PAYING</span>
-      </button>
-    </mat-card-actions>
-  </mat-card>
+  <div class="col-md-4">
+
+  </div>
+
+  <div class="col-md-8">
+    <mat-card>
+      <mat-card-header>
+        <mat-toolbar color="dark">
+          <span>Payment Option</span>
+        </mat-toolbar>
+  
+      </mat-card-header>
+      <mat-card-content>
+        <div [formGroup]="paymentForm" fxLayout="column">
+          <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Amount</mat-label>
+            <input matInput type="number" formControlName="amount" />
+          </mat-form-field>
+          <ngx-stripe-card></ngx-stripe-card>
+        </div>
+      </mat-card-content>
+      <mat-card-actions fxLayout="row">
+        <mat-divider></mat-divider>
+        <span fxFlex></span>
+        <button mat-raised-button style="margin-top: 16px" color="primary" (click)="pay()" [disabled]="paying">
+          <span *ngIf="!paying">PAY</span>
+          <span *ngIf="paying">PAYING</span>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+ 
+
 </div>
-<app-footer></app-footer>
+<!-- <app-footer></app-footer> -->

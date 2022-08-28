@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrManager } from 'ng6-toastr-notifications';
 import { timeSlot } from 'src/constant';
 
 @Component({
@@ -13,16 +14,11 @@ export class CalenderViewComponent implements OnInit {
   isPaid: boolean = false;
   bookedSlot: any;
   timeSlot = timeSlot
-
-  //modalRef!: BsModalRef;
   bookingForm!: FormGroup
-  // service!: IService;
-  // company!: ICompany;
-  // user!: IUser;
-  // staffList: IStaff[] = [];
+  
 
 
-  constructor(private fb: FormBuilder, public router: Router) { }
+  constructor(private fb: FormBuilder, public toastr: ToastrManager, public router: Router) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -41,10 +37,28 @@ export class CalenderViewComponent implements OnInit {
     this.bookingForm.get('show_number')?.setValue('');
     this.bookingForm.get('slot')?.setValue('');
     this.bookingForm.get('show_date')?.setValue(new Date(evt));
+    if(new Date() > new Date(this.bookingForm.get('show_date')?.value)){
+      this.bookingForm.get('show_date')?.setValue('');
+      this.toastr.warningToastr('Please select the future date', 'Warning')
+    } else {
+      if(this.bookingForm.get('show_date')?.value === ''){
+        this.toastr.warningToastr(
+          'Please select the Date!',
+          'Note'
+        );
+      } else if(this.bookingForm.get('show_number')?.value === ''){
+        this.toastr.warningToastr(
+          'Please select the show time for Movie!',
+          'Note'
+        );
+      } else {
+        console.log(this.bookingForm.get('show_date')?.setValue(new Date(evt)))
+        
+      }
     this.updateSlots(new Date(evt));
 
   }
-
+  }
   updateSlots(evt: any) {
 
   }

@@ -15,13 +15,18 @@ export class HeaderComponent implements OnInit {
   }
 
   isLoggedIn(){ 
+    console.log(localStorage.getItem('email'));
     if(localStorage.getItem('email')){
       return true;
-    } return false;
+    } else {
+      return false;
+    }
   }
 
   logout(){
     localStorage.clear()
+
+    this.router.navigate([''])
   }
 
 }

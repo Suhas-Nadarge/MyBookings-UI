@@ -160,6 +160,7 @@ export class ViewSeatsComponent implements OnInit {
       for (let i = 0; i < this.disabledSeats.length; i++) {
         if (mainObj['seatRowLabel'] == this.disabledSeats[i][0]) {
           mainObj['seats'].map((element: any) => Number(element['seatNo']) == Number((this.disabledSeats[i].slice(-2)).replace(/\s/g, "")) ? element['status'] = 'unavailable' : element['status'] = element['status'])
+          // ----------------This code is commented as part of code otpimization---------------------
           // mainObj['seats'].forEach((obj:any) => {
           //   const temp = (this.disabledSeats[i].slice(-2)).replace(/\s/g, "")
           //   console.log('Comparee '+Number(obj['seatNo']),'--->'+Number(temp))
@@ -168,13 +169,18 @@ export class ViewSeatsComponent implements OnInit {
 
           //   }
           // }); 
+          // ------------------------------------------------------------------------------------------
         }
       }
     });
 
   }
   proceedBooking() {
-    this.router.navigate(['/payment-gateway',{'cart':JSON.stringify(this.cart),'bookingData':JSON.stringify(this.bookingForm)}])
+    const obj: any = this.bookingForm;
+    obj['selectedseats'] = this.cart.selectedSeats;
+    obj['totalPrice'] = this.cart.totalPrice;
+
+    this.router.navigate(['/payment-gateway',{'cart':this.cart,'bookingData':JSON.stringify(this.bookingForm)}])
   }
 
 

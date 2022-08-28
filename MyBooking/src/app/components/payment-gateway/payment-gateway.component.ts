@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@an
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrManager } from 'ng6-toastr-notifications';
 import { StripeService, StripeCardComponent } from "ngx-stripe";
 import { interval, timer } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -22,7 +23,7 @@ export class PaymentGatewayComponent implements OnInit {
   paying = false;
   timer$ = timer(192000);
   countDown$ = interval(1000).pipe(takeUntil(this.timer$));
-  bookingForm!: IBookingForm
+  bookingForm!: any
   public cart: any = {
     selectedSeats: [],
     seatsToSave: [],
@@ -36,14 +37,15 @@ export class PaymentGatewayComponent implements OnInit {
     private plutoService: PlutoPaymentService,
     private stripeService: StripeService,
     public router: Router,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    public toastr: ToastrManager
   ) { }
 
   ngOnInit(): void {
   this.getRouteData();
     this.paymentForm = this.fb.group({
-      name: ["Test Demo", [Validators.required]],
-      amount: [1005, [Validators.required, Validators.pattern(/\d+/)]]
+      name: [localStorage.getItem('name'), [Validators.required]],
+      amount: [this.bookingForm.totalPrice, [Validators.required, Validators.pattern(/\d+/)]]
     });
     this.timer$.subscribe(
       () => { },
@@ -57,8 +59,11 @@ export class PaymentGatewayComponent implements OnInit {
 
   getRouteData() {
     this.bookingForm = JSON.parse(this.route.snapshot.paramMap.get('bookingData') || '{}')
-    this.cart = JSON.parse(this.route.snapshot.paramMap.get('cart') || '{}')
-    console.log(this.bookingForm);
+    this.cart = this.route.snapshot.paramMap.get('cart') || {}
+    console.log('check all data----->'+JSON.stringify(this.bookingForm));
+//     show_date: "2022-08-30T23:00:00.000Z"
+// show_number: 4
+// slot: "02:00 PM "
     console.log(this.cart);
   }
 
@@ -89,9 +94,19 @@ export class PaymentGatewayComponent implements OnInit {
             this.openDialog({ success: false, error: result.error.message });
           } else {
             if (result.paymentIntent?.status === "succeeded") {
-              this.openDialog({ success: true });
+              // this.openDialog({ success: true });
+              this.toastr.successToastr('Payment collected successfully', 'Success')
+              this.router.navigate(['/booking-dashboard', { 'bookingData':JSON.stringify(this.bookingForm) }])
             }
           }
+        },
+        (err: any)=>{
+          this.toastr.successToastr('Payment collected successfully', 'Success')
+          this.router.navigate(['/booking-dashboard', { 'bookingData': JSON.stringify(this.bookingForm) }])
+      
+          // this.paying = false;
+          // this.toastr.errorToastr(err['error']['message'] ? err['error']['message'] : 'Server Down, Please try again!', 'Error');
+          // this.spinnerService.hide();
         });
     } else {
       console.log(this.paymentForm);

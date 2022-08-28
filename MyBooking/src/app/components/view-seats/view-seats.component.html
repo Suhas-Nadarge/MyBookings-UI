@@ -2,17 +2,15 @@
 
 <div>
     <div class="col-lg-12 seat-container">
-        <h3>
+        <!-- <h3>
             Movie Details
         </h3>
         <div class="card" style="width: 18rem;">
             <div class="card-body">
-                <h5 class="card-title">Audi-1</h5>
-                <!-- TODO: Enter movie Details here -->
-                <h6 class="card-subtitle mb-2 text-muted">Enter Movie details</h6>
-                <p class="card-text">{{this.bookingForm.show_date | date }} {{this.bookingForm.slot}}</p>
+                
+     
             </div>
-        </div>
+        </div> -->
        
 
         <div class="row">
@@ -62,9 +60,13 @@
                 </div>
             </div>
             <div class="col-md-3 mt-5">
-                <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+                <div class="card mb-3" style="max-width: 18rem;">
                     <div class="card-body">
                 <div class=" summary-bar">
+                    <h5 class="card-title">Audi-1</h5>
+                <!-- TODO: Enter movie Details here -->
+                <h5>Movie: {{bookingForm?.moviename}}</h5>
+                <h5>{{bookingForm?.show_date | date }} {{bookingForm?.slot}}</h5>
                     <div class="">
                         <div>
                             <h5>Total Selected : {{ cart.selectedSeats.length }}</h5>
@@ -76,7 +78,7 @@
                         <span *ngFor="let seatLabel of cart.selectedSeats"
                             class="badge badge-primary">{{seatLabel}}</span>
                     </div>
-                    <button [disabled]="cart.selectedSeats.length == 0" type="button" (click)="proceedBooking()"
+                    <button style="float:right" [disabled]="cart.selectedSeats.length == 0" type="button" (click)="proceedBooking()"
                         class="btn btn-primary">Book Now</button>
                     </div>
                     </div>

@@ -1,31 +1,60 @@
-<div class="cardWrap">
-    <div class="card cardLeft">
-        <h1>Startup <span>Cinema</span></h1>
-        <div class="title">
-            <h2>How I met your Mother</h2>
-            <span>movie</span>
-        </div>
-        <div class="name">
-            <h2>Vladimir Kudinov</h2>
-            <span>name</span>
-        </div>
-        <div class="seat">
-            <h2 *ngFor="let seat of this.cart.selectedSeats">{{seat}}</h2>
-            <span>seat</span>
-        </div>
-        <div class="time">
-            <h2>{{this.bookingForm.slot}}</h2>
-            <span>time</span>
-        </div>
 
-    </div>
-    <div class="card cardRight">
-        <div class="eye"></div>
-        <div class="number">
-            <h3>156</h3>
-            <span>seat</span>
-        </div>
-        <div class="barcode"></div>
-    </div>
 
-</div>
+
+
+
+
+
+<div class="card" style="margin-top: 40px;max-height: 100vh;overflow: auto;width: 56rem;margin-left: 235px;
+height: 390px"> 
+    <!-- | date: 'mediumDate' -->
+
+    <h5 *ngIf= "bookingList.length">Booking Confirmed ✅</h5>
+    
+  
+        <div *ngFor="let booking of bookingList;let i = index">
+        <div  class="card cardLeft">
+            <h1>Startup <span>Cinema</span></h1>
+            <div class="title">
+                <h2>{{bookingList[i].moviename}}</h2>
+                <span>movie</span>
+            </div>
+            <div class="name">
+                <h2>{{bookingList[i].name}}</h2>
+                <span>name</span>
+            </div>
+            <div class="seat">
+                <h2 *ngFor="let seat of bookingList[i].selectedseats">{{seat}}</h2>
+                <span>seat</span>
+            </div>
+            <div class="time">
+                <h2>{{bookingList[i].slot}}</h2>
+                <span>time</span>
+            </div>
+    
+        </div>
+        <div class="card cardRight">
+            <div class="eye"></div>
+            <div class="number">
+                <h3>{{bookingList[0].selectedseats.length}}</h3>
+                <span>seat</span>
+            </div>
+            <div class="barcode"></div>
+        </div>
+    </div>
+    
+    <div class="card-body" *ngIf="!bookingList.length">
+        <h5 class="card-title">You don't have Bookings right now!</h5>
+        <p class="card-text">Click below to Book Tickets <br>
+        </p>
+        <button data-phase="postRelease" data-toggle="modal" (click)= "router.navigate(['/home'])" data-target="#exampleModal" class="sc-8f9mtj-0 sc-8f9mtj-1 sc-1vmod7e-0 gsJmXR"
+                        >
+                        <div class="sc-1vmod7e-2 iBonLL">
+                            <span style="font-weight: 500; font-size: 16px; color: rgb(255, 255, 255);">
+                                Book More
+                            </span>
+                            
+                        </div>
+                    </button>
+      </div>
+  </div>

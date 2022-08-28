@@ -31,14 +31,14 @@ export class UserService {
     return this._httpClient.get(this.user_url + "/" + userId);
   }
 
-
-  setUser(user: User) {
-    this.user = user;
+  bookTickets(ticket: any): Observable<any> {
+    return this._httpClient.post(this.user_url + "/register", ticket, this.httpOptions);
   }
 
-  getUser(): User {
-    return this.user;
+  getAllBookingDetails(email: any): Observable<any> {
+    return this._httpClient.post(this.user_url + "/login", email, this.httpOptions)
   }
+
 
 
   setMovie(movie: Movies) {
@@ -48,6 +48,8 @@ export class UserService {
   getMovie(): Movies {
     return this.movie;
   }
+
+
 
 
   

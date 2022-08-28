@@ -41,7 +41,13 @@ export class DetailsComponent implements OnInit {
   getData(evt:any){
     //console.log(evt);
     this.modalClose.nativeElement.click()
-    this.router.navigate(['/view-seats/', { 'bookingData': JSON.stringify(evt) }])
+    const obj: any = {evt}
+    obj['name']=  localStorage.getItem('name');
+    obj['moviename']= this.movieDetails.movieName
+    obj['show_date'] = evt['show_date']
+    obj['slot'] = evt['slot']
+
+    this.router.navigate(['/view-seats/', { 'bookingData': JSON.stringify(obj) }])
   }
 
 }
