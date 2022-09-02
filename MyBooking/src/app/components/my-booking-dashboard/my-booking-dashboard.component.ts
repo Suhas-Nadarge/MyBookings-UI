@@ -25,9 +25,15 @@ export class MyBookingDashboardComponent implements OnInit {
 
   
   getRouteData() {
-    this.bookingList.push(JSON.parse(this.route.snapshot.paramMap.get('bookingData') || '{}'))
-    this.cart = this.route.snapshot.paramMap.get('cart') || '{}'
-    console.log(this.bookingList);
+    // console.log('='+this.route.snapshot.paramMap.get('bookingData'))
+    if(this.route.snapshot.paramMap.get('bookingData')){
+      this.bookingList.push(JSON.parse(this.route.snapshot.paramMap.get('bookingData') || '{}'))
+      this.cart = this.route.snapshot.paramMap.get('cart') || '{}'
+      console.log(this.bookingList);
+    }
+    else {
+      this.bookingList = []
+    }
 //     show_date: "2022-08-30T23:00:00.000Z"
 // show_number: 4
 // slot: "02:00 PM "

@@ -21,3 +21,22 @@
   .grey {
     background-color: grey;
   }
+  
+  .OrderReviewCountdown_timeOutCounter__pXPsh {
+    background: #fd5154;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 700;
+    line-height: 26px;
+    letter-spacing: -.08px;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin: 3px 0 0 8px;
+   
+    box-sizing: border-box;
+    justify-content: center;
+  }

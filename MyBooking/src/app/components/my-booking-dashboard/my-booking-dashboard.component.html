@@ -9,7 +9,7 @@
 height: 390px"> 
     <!-- | date: 'mediumDate' -->
 <!-- Template used from site- https://codepen.io/verpixelt/pen/AXBdKy -->
-    <h5 *ngIf= "bookingList.length">Booking Confirmed ✅</h5>
+    <h5 *ngIf= "bookingList.length">Booking Confirmed  ✅</h5>
     
   
         <div *ngFor="let booking of bookingList;let i = index">
@@ -24,7 +24,7 @@ height: 390px">
                 <span>name</span>
             </div>
             <div class="seat">
-                <h2 *ngFor="let seat of bookingList[i].selectedseats">{{seat}}</h2>
+                <h2>{{bookingList[i].selectedseats.toString()}}</h2>
                 <span>seat</span>
             </div>
             <div class="time">

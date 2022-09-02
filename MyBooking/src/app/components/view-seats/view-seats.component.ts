@@ -1,18 +1,20 @@
 import { keyframes } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { Subscription } from 'rxjs';
 import { IBookingForm } from 'src/app/model/bookingFrom';
 import { SocketService } from 'src/app/services/socket.service';
 import { seatLayout } from 'src/constant';
-
+import { interval, timer } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 @Component({
   selector: 'app-view-seats',
   templateUrl: './view-seats.component.html',
   styleUrls: ['./view-seats.component.scss']
 })
-export class ViewSeatsComponent implements OnInit {
+export class ViewSeatsComponent implements OnInit, OnDestroy {
   bookingForm!: IBookingForm;
   movies: any[] = [];
   disabledSeats: any = []
@@ -32,34 +34,43 @@ export class ViewSeatsComponent implements OnInit {
   };
 
   title = '';
-  uniqueId: any;
+  uniqueId = Math.random();
+  timer$ = timer(92000);
+  countDown$ = interval(1000).pipe(takeUntil(this.timer$));
 
   constructor(
     private socketService: SocketService, public router: Router, public toastr: ToastrManager, private route: ActivatedRoute
   ) {
     // this.toastr.warningToastr('Please select the future date', 'Warning')
   }
+  ngOnDestroy(): void {
+  }
 
   ngOnInit(): void {
+    // this.timer$.subscribe(
+    //   () => { },
+    //   () => { },
+    //   () => {
+    //    window.location.reload()
+
+    //   }
+    // )
+    this.generateSeats(this.seatLayout);
     this.bookingForm = JSON.parse(this.route.snapshot.paramMap.get('bookingData')|| '{}');
 
-    this.uniqueId = Math.random()
+    // this.uniqueId = localStorage.getItem('email')
     this.socketService.getData().subscribe(data => {
       console.log('Updated-' + JSON.stringify(data))
+      // alert('triggered')
+      // this.generateSeats(this.seatLayout)
       this.updateDisabled(data)
     })
-    // const op = this.socketService.fetchSeats()
+    const op = this.socketService.fetchSeats()
 
-    this.generateSeats(this.seatLayout);
   }
-  check(evt: any) {
-    console.log('---', evt.target.value)
-    this.socketService.fetchSeats();
-  }
-
 
   public generateSeats(data: any[]) {
-
+    // this.seat_map = []
     if (data.length > 0) {
       var seatCount = 1;
       for (let i = 0; i < data.length; i++) {
@@ -117,10 +128,8 @@ export class ViewSeatsComponent implements OnInit {
   }
 
   public selectSeat(seatObject: any) {
-    
+    this.startTimer();
     this.socketService.setupSocketConnection(seatObject, this.uniqueId)
-    const data = this.socketService.fetchSeats();
-    //  this.updateDisabled(data)
     if (seatObject.status == "available") {
       seatObject.status = "booked";
       this.cart.selectedSeats.push(seatObject.seatLabel);
@@ -140,23 +149,35 @@ export class ViewSeatsComponent implements OnInit {
 
     }
   }
+  startTimer() {
+
+    this.timer$.subscribe(
+      () => { },
+      () => { },
+      () => {
+      //  window.location.reload()
+      }
+    )
+  }
   updateDisabled(data: any) {
     let bookedSeats: any[] = []
     data ? bookedSeats = (data) : bookedSeats = []
-    console.log('@@@' + bookedSeats);
+    console.log('@@@' + JSON.stringify(bookedSeats));
     this.disabledSeats = []
     // There are the seats which are hold for other user who's selected 
     if (bookedSeats.length) {
       bookedSeats = bookedSeats.filter((ele: any) => ele['id'] != this.uniqueId)
-
+      bookedSeats = bookedSeats.filter(ele=> ele.seatList.length > 0)
       bookedSeats.forEach((obj: { seatList: any; }) => {
         this.disabledSeats = this.disabledSeats.concat(obj.seatList)
       });
       this.disabledSeats = [...new Set(this.disabledSeats)]
     }
     console.log('---' + this.disabledSeats);
+    
     // key, seatLabel
     this.seat_map.forEach((mainObj: any) => {
+      if(this.disabledSeats.length){
       for (let i = 0; i < this.disabledSeats.length; i++) {
         if (mainObj['seatRowLabel'] == this.disabledSeats[i][0]) {
           mainObj['seats'].map((element: any) => Number(element['seatNo']) == Number((this.disabledSeats[i].slice(-2)).replace(/\s/g, "")) ? element['status'] = 'unavailable' : element['status'] = element['status'])
@@ -172,6 +193,7 @@ export class ViewSeatsComponent implements OnInit {
           // ------------------------------------------------------------------------------------------
         }
       }
+    } 
     });
 
   }

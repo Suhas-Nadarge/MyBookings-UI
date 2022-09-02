@@ -34,9 +34,8 @@ export class SocketService {
 
 
   
-  setupSocketConnection(seatObj: any, id:string) {
+  setupSocketConnection(seatObj: any, id:any) {
     this.psocket = io(environment.socketUrl, {transports: ['websocket']});
-    // this.psocket = io(environment.socketUrl);
     this.socket.emit('my broadcast', {'id':id,'seatObj':seatObj});
   }
 

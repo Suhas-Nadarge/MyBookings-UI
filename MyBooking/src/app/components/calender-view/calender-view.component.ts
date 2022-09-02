@@ -37,6 +37,7 @@ export class CalenderViewComponent implements OnInit {
     this.bookingForm.get('show_number')?.setValue('');
     this.bookingForm.get('slot')?.setValue('');
     this.bookingForm.get('show_date')?.setValue(new Date(evt));
+    console.log('compare dates-'+new Date(),new Date(this.bookingForm.get('show_date')?.value))
     if(new Date() > new Date(this.bookingForm.get('show_date')?.value)){
       this.bookingForm.get('show_date')?.setValue('');
       this.toastr.warningToastr('Please select the future date', 'Warning')
@@ -53,7 +54,7 @@ export class CalenderViewComponent implements OnInit {
         );
       } else {
         console.log(this.bookingForm.get('show_date')?.setValue(new Date(evt)))
-        
+
       }
     this.updateSlots(new Date(evt));
 

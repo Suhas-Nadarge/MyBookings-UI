@@ -1,7 +1,7 @@
 
 
 <div>
-    <div class="col-lg-12 seat-container">
+    <div class="col-lg-12 seat-container"> <b>User ID: {{uniqueId}}</b>
         <!-- <h3>
             Movie Details
         </h3>
@@ -29,7 +29,18 @@
                 </div>
             </div>
         </div>
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-8">
+        <!-- <div> -->
+          <b style="color: red;">Page will be refreshed in 
+          <!-- &nbsp;<span><b>0</b></span><span><b>4</b></span>:&nbsp;<span><b>3</b></span><span><b>0</b></span>&nbsp; Minutes -->
+          {{ 100 - (countDown$ | async) }} Seconds </b>
+        <!-- </div> -->
+      </div>
+    <div class="col-md-3"></div>
 
+</div>
         <div class="row">
             <div class="col-md-9">
                 <div *ngFor="let seatrow of seat_map ">

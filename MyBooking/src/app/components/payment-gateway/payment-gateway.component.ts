@@ -51,7 +51,7 @@ export class PaymentGatewayComponent implements OnInit {
       () => { },
       () => { },
       () => {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/details']);
       }
     )
   }
